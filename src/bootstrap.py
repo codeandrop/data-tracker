@@ -8,7 +8,7 @@ class Boostrap():
         self.conn = None
 
     async def create_connection(self):
-        database_filepath = 'src/data/database.db'
+        database_filepath = "data/database.db"
 
         conn = None
         try:

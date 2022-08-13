@@ -18,7 +18,7 @@ class MetricsPricesService():
         return self.metrics_prices_model.count_records()
 
     def fetch_all(self):
-        return self.metrics_model.fetch_all()
+        return self.metrics_prices_model.fetch_all()
 
     def fetch_from_db_by_metric_id(self, metric_id):
         now = datetime.now()
