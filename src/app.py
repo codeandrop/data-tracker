@@ -2,12 +2,12 @@ import asyncio
 from tornado.ioloop import PeriodicCallback
 from tornado.web import Application
 from tornado.options import define, options
-from bootstrap import Boostrap
-from handlers.main_handler import MainHandler
-from handlers.metrics import Metrics
-from handlers.metrics_detail import MetricsDetail
-from handlers.metrics_prices import MetricsPrices
-from services.periodic_job import PeriodicJobService
+from src.bootstrap import Boostrap
+from src.handlers.main_handler import MainHandler
+from src.handlers.metrics import Metrics
+from src.handlers.metrics_detail import MetricsDetail
+from src.handlers.metrics_prices import MetricsPrices
+from src.services.periodic_job import PeriodicJobService
 
 define("port", default=8888, help="run on the given port", type=int)
 
@@ -42,7 +42,3 @@ async def main():
     period_callback.start()
 
     await asyncio.Event().wait()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())

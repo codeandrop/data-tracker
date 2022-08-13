@@ -1,6 +1,6 @@
 from tornado.web import RequestHandler
-from services.metrics_prices import MetricsPricesService
-from views.prices import PricesView
+from src.services.metrics_prices import MetricsPricesService
+from src.views.prices import PricesView
 
 
 class MetricsPrices(RequestHandler):

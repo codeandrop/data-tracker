@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from services.metrics_prices import MetricsPricesService
+from src.services.metrics_prices import MetricsPricesService
 
 
 class Boostrap():
@@ -18,7 +18,6 @@ class Boostrap():
 
         self.conn = conn
         return conn
-
 
     async def load_initial_historical_prices(self):
         metrics_prices_service = MetricsPricesService(self.conn)

@@ -1,6 +1,6 @@
-from bootstrap import Boostrap
-from services.metrics_prices import MetricsPricesService
-from services.metrics import MetricsService
+from src.bootstrap import Boostrap
+from src.services.metrics_prices import MetricsPricesService
+from src.services.metrics import MetricsService
 
 
 class PeriodicJobService():

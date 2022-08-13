@@ -1,6 +1,6 @@
 import math
-from models.metrics import MetricsModel
-from services.metrics_prices import MetricsPricesService
+from src.models.metrics import MetricsModel
+from src.services.metrics_prices import MetricsPricesService
 
 
 class MetricsService():

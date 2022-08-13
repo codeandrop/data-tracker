@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
 import pytz
-from models.metrics import MetricsModel
-from models.metrics_prices import MetricsPricesModel
-from services.crypto_api import CryptoApi
+from src.models.metrics import MetricsModel
+from src.models.metrics_prices import MetricsPricesModel
+from src.services.crypto_api import CryptoApi
 
 
 class MetricsPricesService():
