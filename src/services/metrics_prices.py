@@ -20,12 +20,12 @@ class MetricsPricesService():
     def fetch_all(self):
         return self.metrics_prices_model.fetch_all()
 
-    def fetch_from_db_by_metric_id(self, metric_id):
+    def fetch_all_by_metric_id_and_dates(self, metric_id):
         now = datetime.now()
         end_date = now.isoformat()
         delta_date = now - timedelta(seconds=self.historical_window_seconds)
         start_date = delta_date.isoformat()
-        return self.metrics_prices_model.fetch_all_by_metric_id(metric_id, start_date, end_date)
+        return self.metrics_prices_model.fetch_all_by_metric_id_and_dates(metric_id, start_date, end_date)
 
     def insert(self, record):
         return self.metrics_prices_model.insert(record)

@@ -17,7 +17,7 @@ class MetricsPricesModel():
         rows = cur.fetchall()
         return rows
 
-    def fetch_all_by_metric_id(self, metric_id, start_date, end_date):
+    def fetch_all_by_metric_id_and_dates(self, metric_id, start_date, end_date):
         cur = self.conn.cursor()
         cur.execute(
             "SELECT * FROM metrics_prices WHERE metric_id = ? AND created_at BETWEEN ? AND ?",

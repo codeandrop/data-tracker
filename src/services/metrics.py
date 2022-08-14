@@ -32,7 +32,7 @@ class MetricsService():
     def calculate_and_update_stdev(self):
         metrics = self.fetch_all()
         for metric in metrics:
-            prices = self.metrics_prices_service.fetch_from_db_by_metric_id(
+            prices = self.metrics_prices_service.fetch_all_by_metric_id_and_dates(
                 metric[0])
             stdev = self.calculate_stdev(prices)
             self.metrics_model.update_stdev((stdev, metric[0]))
