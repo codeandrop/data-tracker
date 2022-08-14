@@ -105,6 +105,7 @@ Moreover, there is a crypto API service that allows the app to fetch the initial
 
 ## Enhancements
 - Replace SQLite with PostgreSQL to improve database reliability.
+- Add documentation to classes and methods.
 - Create a docker container for the app, use the Postgres docker image and use docker-compose to define the interaction between the containers.
 - Implement a Task Queue System like Celery or RabbitMQ to handle the periodic updates in the app to better manage failovers and retries.
 - Implement periodic metric fetching to allow new metrics to be added to the system.
