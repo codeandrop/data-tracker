@@ -1,6 +1,8 @@
 import os
 import sqlite3
 import pytest
+from datetime import datetime
+
 
 def clear_db(conn):
     cur = conn.cursor()
@@ -26,6 +28,7 @@ def insert_prices(conn):
         cur.executescript(sql)
         conn.commit()
 
+
 @pytest.fixture()
 def db_connection():
     database_filepath = "data/test_database.db"
@@ -40,13 +43,26 @@ def db_connection():
 
     conn.close()
 
+
 @pytest.fixture()
 def load_metrics(db_connection):
     clear_db(db_connection)
     insert_metrics(db_connection)
+
 
 @pytest.fixture()
 def load_prices(db_connection):
     clear_db(db_connection)
     insert_metrics(db_connection)
     insert_prices(db_connection)
+
+
+@pytest.fixture()
+def update_prices_dates(db_connection):
+    now = datetime.now().isoformat()
+    sql = """UPDATE metrics_prices
+              SET created_at = ?
+              """
+    cur = db_connection.cursor()
+    cur.execute(sql, (now,))
+    db_connection.commit()

@@ -18,3 +18,6 @@ def test_insert_and_fetch_metric(db_connection, load_metrics):
     all_rows = metrics_prices_model.fetch_all()
 
     assert len(all_rows) == 4
+    # validate metric id and price are the ones expected
+    assert all_rows[0][1] == 1
+    assert all_rows[0][2] == 2
