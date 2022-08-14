@@ -36,6 +36,7 @@ async def main():
     await boostrap.load_initial_historical_prices()
     app = BaseApplication(conn)
     app.listen(options.port)
+    print(f"Server running on http://localhost:{options.port}")
 
     # TODO: move miliseconds to config file
     period_callback = PeriodicCallback(scheduler, 60000)

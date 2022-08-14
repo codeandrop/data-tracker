@@ -8,7 +8,7 @@ class MetricsPrices(RequestHandler):
         prices_view = PricesView()
         metrics_prices_service = MetricsPricesService(
             self.application.conn)
-        prices = metrics_prices_service.fetch_from_db_by_metric_id(
+        prices = metrics_prices_service.fetch_all_by_metric_id_and_dates(
             metric_id)
         prices_output = prices_view.prices_list(prices)
         response = {

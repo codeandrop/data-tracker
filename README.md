@@ -20,23 +20,27 @@ Web service to track crypto data
 
     `git clone https://github.com/codeandrop/data-tracker.git`
 
-2. Create a virtual enviroment
+2. cd into the project's folder
+
+    `cd data-tracker`
+
+3. Create a virtual enviroment
 
     `python3 -m venv env`
 
-3. Activate the virtual environment
+4. Activate the virtual environment
 
     `source env/bin/activate`
 
-4. Install the project's requirements
+5. Install the project's requirements
 
     `pip3 install -r requirements.txt`
 
-5. You can run the app by executing
+6. You can run the app by executing
 
-    `python main.py`
+    `python3 main.py`
 
-6. You can leave the virtual env by executing
+7. You can leave the virtual env by executing
 
     `deactivate`
 
