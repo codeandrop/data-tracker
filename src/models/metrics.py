@@ -17,7 +17,7 @@ class MetricsModel():
     def fetch_by_id(self, metric_id):
         cur = self.conn.cursor()
         cur.execute(
-            "SELECT * FROM metrics WHERE id = ?", (metric_id))
+            "SELECT * FROM metrics WHERE id = ?", (metric_id,))
         row = cur.fetchone()
         return row
 
