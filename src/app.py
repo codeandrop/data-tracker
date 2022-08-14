@@ -1,4 +1,5 @@
 import asyncio
+import configparser
 from tornado.ioloop import PeriodicCallback
 from tornado.web import Application
 from tornado.options import define, options
@@ -31,6 +32,8 @@ async def scheduler():
 
 
 async def main():
+    config = configparser.ConfigParser()
+    config.read('./src/config.ini')
     boostrap = Boostrap()
     conn = await boostrap.create_connection()
     await boostrap.load_initial_historical_prices()
@@ -38,8 +41,8 @@ async def main():
     app.listen(options.port)
     print(f"Server running on http://localhost:{options.port}")
 
-    # TODO: move miliseconds to config file
-    period_callback = PeriodicCallback(scheduler, 60000)
+    period_callback = PeriodicCallback(
+        scheduler, int(config['PERIODIC_JOB']['RefreshRate']))
     period_callback.start()
 
     await asyncio.Event().wait()

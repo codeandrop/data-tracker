@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import pytz
+import configparser
 from src.models.metrics import MetricsModel
 from src.models.metrics_prices import MetricsPricesModel
 from src.services.crypto_api import CryptoApi
@@ -10,8 +11,14 @@ class MetricsPricesService():
         self.conn = conn
         self.metrics_model = MetricsModel(self.conn)
         self.metrics_prices_model = MetricsPricesModel(self.conn)
-        # TODO: update from config, different from api than service
-        self.historical_window_seconds = 86400  # 1 day
+
+        config = configparser.ConfigParser()
+        config.read('./src/config.ini')
+
+        self.period = int(
+            config['CRYPTO_API']['Period'])
+        self.historical_window_seconds = int(
+            config['DEFAULT']['HistoricalDataWindowMS'])
         self.crypto_api = CryptoApi()
 
     def count_records(self):
@@ -34,7 +41,7 @@ class MetricsPricesService():
         return self.metrics_prices_model.insert_many(rows)
 
     def prepare_data_to_insert(self, metric_id, prices):
-        rows = prices['result']['60']
+        rows = prices['result'][self.period]
         filtered_information = []
         time_zone = pytz.utc
         for row in rows:

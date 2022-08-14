@@ -1,17 +1,19 @@
-
 from datetime import datetime, timedelta
 import time
+import configparser
 import requests
-
-# TODO: call config file and default values
 
 
 class CryptoApi():
     def __init__(self):
         self.base_url = "https://api.cryptowat.ch"
-        self.period = 60  # TODO: update from config
-        # TODO: convert to seconds
-        self.historical_window = 1  # 1 day TODO: update from config
+
+        config = configparser.ConfigParser()
+        config.read('./src/config.ini')
+
+        self.period = int(config['CRYPTO_API']['Period'])
+        self.historical_window = int(
+            config['CRYPTO_API']['HistoricalWindowDay'])
 
     def get_historical_prices(self, options):
         now = datetime.now()
