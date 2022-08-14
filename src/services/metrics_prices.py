@@ -15,8 +15,7 @@ class MetricsPricesService():
         config = configparser.ConfigParser()
         config.read('./src/config.ini')
 
-        self.period = int(
-            config['CRYPTO_API']['Period'])
+        self.period = config['CRYPTO_API']['Period']
         self.historical_window_seconds = int(
             config['DEFAULT']['HistoricalDataWindowMS'])
         self.crypto_api = CryptoApi()
