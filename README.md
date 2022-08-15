@@ -118,9 +118,9 @@ Moreover, there is a crypto API service that allows the app to fetch the initial
 ## Scalability
 
 ### What would you change if you needed to track many metrics?
-If I needed to start tracking volume, for instance, I would create a new table, one for each value that needs to be tracked. Given we are working on time series data, a single table to track many metrics will grow considerably and could create performance issues.
+If I needed to start tracking volume, for instance, I would create a new table just for volume data. Given we are working on time series data, a single table to track many metrics (i.e price and volume together) will grow considerably and could create performance issues.
 
-Furthermore, for every new metric, I would create a new model, and service to manage their appropriate logic and maintain separation of concerns.
+Furthermore, for every new metric, I would create a new model and service to manage their appropriate logic and maintain separation of concerns.
 
 ### What if you needed to sample them more frequently?
 As I mentioned in enhancements, implementing a Task Queue System will help with the reliability of sampling more often and potentially more metrics. The Queue System can scale up or down based on demand, and also can be parallelized to track many metrics at the same time.
@@ -130,9 +130,9 @@ I would implement a caching service for the dashboard, probably on Redis to keep
 
 
 ## Testing
-I would implement integration testing at the framework level (Tornado) and ideally E2E testing for the clients that will connect to the API (web or mobile clients). Tornado has some utilities called AsyncHTTPClient and AsyncHTTPTestCase which can implement a wrapper to do API calls within the tests.
+I would implement integration testing at the framework level (Tornado) and ideally E2E testing for the clients that will connect to the API (web or mobile clients). Tornado has some utilities called `AsyncHTTPClient` and `AsyncHTTPTestCase` which can implement a wrapper to do API calls within the tests.
 
-To implement the crypto API mocks, I would use requests-mock to wrap around the response and avoid external API calls during testing. I would store the JSON response in a file and load them based on the scenario I want to cover.
+To implement the crypto API mocks, I would use `requests-mock` to wrap around the response and avoid external API calls during testing. I would store the JSON response in a file and load them based on the scenario I want to cover.
 
 ## Feature request: alert whenever a metric exceeds 3x the value of its average in the last 1 hour.
 
